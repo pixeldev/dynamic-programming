@@ -11,13 +11,13 @@
 /**
  * Cantidades máximas de escalones y combinaciones.
  */
-#define MAX_N 10000
+#define STAIRS_MAX_N 10000
 #define MOD 1000000007
 
 /**
  * Arreglo de memorización.
  */
-long long dp[MAX_N + 1];
+long long dp[STAIRS_MAX_N + 1];
 
 /**
  * Calcula la cantidad de formas de subir una escalera de n escalones
@@ -36,6 +36,6 @@ long calculateWays(int n, int k);
  * @param idx           El índice de la combinación
  * @param combination   La combinación actual
  */
-void printWays(int n, int k, int idx, int combination[MAX_N]);
+void printWays(int n, int k, int idx, int combination[STAIRS_MAX_N]);
 
 #endif //DYNAMIC_PROGRAMMING_STAIRS_H

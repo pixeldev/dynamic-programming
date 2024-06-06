@@ -19,7 +19,7 @@ long calculateWays(int n, int k) {
     return dp[n];
 }
 
-void printWays(int n, int k, int idx, int combination[MAX_N]) {
+void printWays(int n, int k, int idx, int combination[STAIRS_MAX_N]) {
     if (n == 0) {
         for (int i = 0; i < idx; i++) {
             printf("%d ", combination[i]);

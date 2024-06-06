@@ -8,7 +8,7 @@ int main(void) {
     puts("Escoge una opción:");
     puts("1. Subsecuencia común más larga.");
     puts("2. Rana saltarina.");
-    puts("3. Voltear monedas.");
+    puts("3. Cambio con monedas.");
     printf(">> ");
 
     int option;
@@ -40,27 +40,25 @@ int main(void) {
             printf("¿Deseas imprimir las combinaciones? (1 = Sí, 0 = No)\nNOTA: Tenga en cuenta que se hace con una estrategia de backtracking y es muy exhaustivo.\n>> ");
             scanf("%d", &printCombinations);
             if (printCombinations) {
-                int combination[MAX_N];
+                int combination[STAIRS_MAX_N];
                 printWays(n, k, 0, combination);
             }
             break;
         }
         case 3: {
+            int x;
+            printf("Introduce el cambio que hay que dar:\n>> ");
+            scanf("%d", &x);
             int n;
             printf("Introduce el número de monedas:\n>> ");
             scanf("%d", &n);
-            int m;
-            printf("Introduce el número de monedas a voltear:\n>> ");
-            scanf("%d", &m);
             int coins[n];
             printf("Introduce las monedas:\n");
             for (int i = 0; i < n; i++) {
-                printf("Moneda %d >> ", i + 1);
+                printf("Moneda #%d\n>> ", i +1);
                 scanf("%d", &coins[i]);
             }
-            FlipResult *result = calculateFlips(coins, n, m);
-            printFlipResult(result);
-            freeFlipResult(result);
+            minCoins(coins, n, x);
             break;
         }
         default:

@@ -5,36 +5,35 @@
 #include <printf.h>
 #include "coins.h"
 
-FlipResult *calculateFlips(int coins[MAX_N], int n, int m) {
-    int flip[MAX_N + 1] = {0};
+void minCoins(int M[], int n, int X) {
+    int dp[X+1], coins[X+1];
 
-    int flipCount = 0, operations = 0;
-    for (int i = 0; i < n; i++) {
-        flipCount += flip[i];
-        if ((coins[i] + flipCount) % 2 == 0) {
-            operations++;
-            flipCount++;
-            if (i + m < n) {
-                flip[i + m]--;
+    dp[0] = 0;
+    for (int i = 1; i <= X; i++) {
+        dp[i] = INT_MAX;
+        coins[i] = -1;
+    }
+
+    for (int i = 1; i <= X; i++) {
+        for (int j = 0; j < n; j++) {
+            if (M[j] <= i && dp[i - M[j]] + 1 < dp[i]) {
+                dp[i] = dp[i - M[j]] + 1;
+                coins[i] = j;
             }
         }
     }
 
-    FlipResult *result = malloc(sizeof(FlipResult));
-    result->operations = operations;
-    result->flipCount = flipCount;
-
-    return result;
-}
-
-void printFlipResult(FlipResult *result) {
-    if (result->flipCount % 2 == 0) {
-        printf("La menor cantidad de veces que necesitas realizar la operación es: %d.\n", result->operations);
-    } else {
-        puts("No es posible hacer que todas las monedas muestren sol.");
+    if (coins[X] == -1) {
+        printf("No es posible dar el cambio.\n");
+        return;
     }
-}
 
-void freeFlipResult(FlipResult *result) {
-    free(result);
+    printf("Monedas mínimas para dar el cambio: %d\n", dp[X]);
+    printf("Monedas usadas para dar el cambio: ");
+    while (X > 0) {
+        int j = coins[X];
+        printf("%d ", M[j]);
+        X = X - M[j];
+    }
+    printf("\n");
 }

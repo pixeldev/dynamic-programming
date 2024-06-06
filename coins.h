@@ -6,42 +6,15 @@
 #define DYNAMIC_PROGRAMMING_COINS_H
 
 #include <stdlib.h>
+#include <limits.h>
 
 /**
- * Cantidad máxima de monedas.
- */
-#define MAX_N 1000
-
-/**
- * Estructura que contiene la cantidad de operaciones y la cantidad de veces que se ha volteado una moneda.
- */
-typedef struct {
-    int operations;
-    int flipCount;
-} FlipResult;
-
-/**
- * Calcula la cantidad de veces que se necesita voltear una moneda para que todas muestren sol.
+ * Calcula el número mínimo de monedas necesarias para dar un cambio de X.
  *
- * @param coins Arreglo de monedas.
- * @param n     Cantidad de monedas.
- * @param m     Cantidad de monedas a voltear.
- * @return Estructura con la cantidad de operaciones y la cantidad de veces que se ha volteado una moneda.
+ * @param M El arreglo donde están los valores de las monedas.
+ * @param n El número de monedas.
+ * @param X El cambio a dar.
  */
-FlipResult *calculateFlips(int coins[MAX_N], int n, int m);
-
-/**
- * Imprime el resultado de la cantidad de operaciones y la cantidad de veces que se ha volteado una moneda.
- *
- * @param result Estructura con la cantidad de operaciones y la cantidad de veces que se ha volteado una moneda.
- */
-void printFlipResult(FlipResult *result);
-
-/**
- * Libera la memoria de la estructura que contiene la cantidad de operaciones y la cantidad de veces que se ha volteado una moneda.
- *
- * @param result Estructura con la cantidad de operaciones y la cantidad de veces que se ha volteado una moneda.
- */
-void freeFlipResult(FlipResult *result);
+void minCoins(int M[], int n, int X);
 
 #endif //DYNAMIC_PROGRAMMING_COINS_H
